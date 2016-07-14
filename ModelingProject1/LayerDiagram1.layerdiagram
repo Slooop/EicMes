@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="2f6ca1f9-70f7-424e-8886-2c497fdaa822" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="e287c88f-2f89-4c5b-bd79-b45e201991d8" name="Model&#xD;&#xA;">
+      <references>
+        <reference Id="900e54ea-d00b-4f12-a8b1-52a40e6e5390" name="MES.Sever.Model.BPM">
+          <ArtifactNode Label="MES.Sever.Model.BPM" Category="CodeSchema_Project" Id="(Assembly=../Mes.Server/Model/MES.Sever.Model.BPM/MES.Sever.Model.BPM.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MES.Sever.Model.BPM)" Label="MES.Sever.Model.BPM.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+        <reference Id="91a57b38-26d2-4361-8906-cc7ad5b51aab" name="MES.Sever.Model.HR">
+          <ArtifactNode Label="MES.Sever.Model.HR" Category="CodeSchema_Project" Id="(Assembly=../Mes.Server/Model/MES.Sever.Model.HR/MES.Sever.Model.HR.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MES.Sever.Model.HR)" Label="MES.Sever.Model.HR.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+        <reference Id="1ba697cc-1f60-46fe-b933-36f0db15ad4b" name="MES.Sever.Model.PPM">
+          <ArtifactNode Label="MES.Sever.Model.PPM" Category="CodeSchema_Project" Id="(Assembly=../Mes.Server/Model/MES.Sever.Model.PPM/MES.Sever.Model.PPM.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MES.Sever.Model.PPM)" Label="MES.Sever.Model.PPM.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="f211b939-4b1a-4200-b809-eda3eee7093e" name="DAL&#xD;&#xA;">
+      <references>
+        <reference Id="ba63a677-c657-4340-9663-a7f9684ae4f4" name="MES.Sever.SQLDAL.BPM">
+          <ArtifactNode Label="MES.Sever.SQLDAL.BPM" Category="CodeSchema_Project" Id="(Assembly=../Mes.Server/SQLDAL/MES.Sever.SQLDAL.BPM/MES.Sever.SQLDAL.BPM.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MES.Sever.SQLDAL.BPM)" Label="MES.Sever.SQLDAL.BPM.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+        <reference Id="ad9464c7-8550-4c29-9f99-d84c55ddb05b" name="MES.Sever.SQLDAL.HR">
+          <ArtifactNode Label="MES.Sever.SQLDAL.HR" Category="CodeSchema_Project" Id="(Assembly=../Mes.Server/SQLDAL/MES.Sever.SQLDAL.HR/MES.Sever.SQLDAL.HR.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MES.Sever.SQLDAL.HR)" Label="MES.Sever.SQLDAL.HR.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+        <reference Id="ad97d9fb-2a8b-493b-9877-0b5b20b375fd" name="MES.Sever.SQLDAL.PPM">
+          <ArtifactNode Label="MES.Sever.SQLDAL.PPM" Category="CodeSchema_Project" Id="(Assembly=../Mes.Server/SQLDAL/MES.Sever.SQLDAL.PPM/MES.Sever.SQLDAL.PPM.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MES.Sever.SQLDAL.PPM)" Label="MES.Sever.SQLDAL.PPM.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="29576e4c-03ab-405e-9470-3ed55febf720" name="IDAL&#xD;&#xA;">
+      <references>
+        <reference Id="96e79176-8e70-4b84-b9fc-64f3e654d664" name="MES.Server.IDAL.BPM">
+          <ArtifactNode Label="MES.Server.IDAL.BPM" Category="CodeSchema_Project" Id="(Assembly=../Mes.Server/IDAL/MES.Server.IDAL.BPM/MES.Server.IDAL.BPM.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MES.Server.IDAL.BPM)" Label="MES.Server.IDAL.BPM.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+        <reference Id="f64445c2-4350-45cf-a420-05a67955900d" name="MES.Server.IDAL.HR">
+          <ArtifactNode Label="MES.Server.IDAL.HR" Category="CodeSchema_Project" Id="(Assembly=../Mes.Server/IDAL/MES.Server.IDAL.HR/MES.Server.IDAL.HR.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MES.Server.IDAL.HR)" Label="MES.Server.IDAL.HR.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+        <reference Id="9f0497b0-d49c-480d-b49f-6e298245365f" name="MES.Server.IDAL.PPM">
+          <ArtifactNode Label="MES.Server.IDAL.PPM" Category="CodeSchema_Project" Id="(Assembly=../Mes.Server/IDAL/MES.Server.IDAL.PPM/MES.Server.IDAL.PPM.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=MES.Server.IDAL.PPM)" Label="MES.Server.IDAL.PPM.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="b47ddfe6-dd89-4594-8e77-5c4d6f1467a3" name="BLL&#xD;&#xA;" />
+    <layer Id="4309eec0-50ac-4748-9acc-05b9ae27d4a2" name="ViewsModule&#xD;&#xA;" />
+  </layers>
+</layerModel>

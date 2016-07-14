@@ -1,0 +1,57 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MES.ModuleBPM" x:Class="MES.ModuleBPM.PrintFlow" 
+             mc:Ignorable="d">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Width="100" Text="{Binding OrderID}"/>
+                <Button Content="生成" Command="{Binding Test}" Width="100" />
+                <Button Content="打印" Command="{Binding OrderBy}" Width="100"/>
+            </StackPanel>
+            <local:OrderInfo   HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top"  DataContext="{Binding Order}"/>
+            <StackPanel  Orientation="Horizontal">
+                <StackPanel x:Name="stackPanel" >
+                    <TextBlock Text="管控工序列表" Foreground="#FF0214BF"/>
+                    <DataGrid ItemsSource="{Binding Order.Product.ControlProcessList}" IsEnabled="False" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF2970A2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Num}"/>
+                          
+                            <DataGridTextColumn Header="工序" Binding="{Binding P_Name}"/>
+                            <DataGridTextColumn Header="标准工时" Binding="{Binding StandardHours}"/>
+                            <DataGridTextColumn Header="重点工序" Binding="{Binding IsVital}"/>
+                            <DataGridTextColumn Header="管制工序" Binding="{Binding IsControl}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock Text="工序列表" Foreground="#FF0214BF"/>
+                    <DataGrid ItemsSource="{Binding Order.Product.ProcessList}" IsEnabled="False" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF2970A2" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Num}"/>
+                          
+                            <DataGridTextColumn Header="工序" Binding="{Binding P_Name}"/>
+                            <DataGridTextColumn Header="标准工时" Binding="{Binding StandardHours}"/>
+                            <DataGridTextColumn Header="重点工序" Binding="{Binding IsVital}"/>
+                            <DataGridTextColumn Header="管制工序" Binding="{Binding IsControl}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel Margin="10,0,0,0">
+                    <TextBlock Text="管制卡列表" Foreground="#FF0214BF"/>
+                    <DataGrid ItemsSource="{Binding SerialNumber}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF2970A2" MaxHeight="800" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="编码" Binding="{Binding SN}"/>
+                            <DataGridTextColumn Header="数量" Binding="{Binding Qty}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+
+
+</UserControl>

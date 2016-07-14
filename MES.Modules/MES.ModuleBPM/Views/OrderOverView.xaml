@@ -1,0 +1,200 @@
+﻿<UserControl x:Class="MES.ModuleBPM.OrderOverView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MES.ModuleBPM"
+             xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" 
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1024" Background="{DynamicResource Background_1}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <!--菜单-->
+        <Border Background="{DynamicResource Head2}" Margin="0" >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"   >
+                <Border BorderBrush="#CCFFFFFF" BorderThickness="1,0,0,0" HorizontalAlignment="Left"   Width="2.5" Background="#FFB6B6B6" Margin="5,0"  />
+              
+                <Label  HorizontalAlignment="Center" VerticalAlignment="Center" Content="开始日期:"/>
+                <DatePicker SelectedDate="{Binding StartDate}" Width="150" Height="30"></DatePicker>
+                <Label  HorizontalAlignment="Center" VerticalAlignment="Center" Content="结束日期:"/>
+                <DatePicker SelectedDate="{Binding EndDate}" Width="150" Height="30"></DatePicker>
+                <Label  HorizontalAlignment="Center" VerticalAlignment="Center" Content="工单状态:"/>
+                <ComboBox  Width="100" ItemsSource="{Binding  OrderStateList}" SelectedItem="{Binding State}" Height="30" SelectedIndex="0" ></ComboBox>
+                <Label  HorizontalAlignment="Center" VerticalAlignment="Center" Content="工单单号"/>
+                <TextBox  Width="150"   Height="30"  Text="{Binding OrderID}" ></TextBox>
+                
+                <Button Command="{Binding GetDailyOrderList}" Content="获取" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/Get.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+                <Button Command="{Binding ExportToExcel}" Content="导出" HorizontalAlignment="Left"  Width="70"   Style="{DynamicResource Buttonlist2}" Height="30" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/Export.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!--导航-->
+        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal"   >
+            <Button Command="{Binding ChageWithOrderCmd}" Content="工单" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/Tag.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Button Command="{Binding  ChageWithWorkHoursCmd}"  Content="工序" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" Visibility="{Binding WidthView.IsVisibilityWorkHours}" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/Tag.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Button Command="{Binding ChageWithUserCmd}" Content="明细" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30"  Visibility="{Binding WidthView.IsVisibilityUser}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/Tag.png" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+
+        <!--数据展示-->
+        <Grid  Grid.Row="1" Background="#FFC1D1E8"   >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding WidthView.Column0}"/>
+                <ColumnDefinition Width="{Binding WidthView.Column1}"/>
+                <ColumnDefinition Width="{Binding WidthView.Column2}"/>
+                <ColumnDefinition Width="{Binding WidthView.Column3}"/>
+                <ColumnDefinition Width="{Binding WidthView.Column4}"/>
+            </Grid.ColumnDefinitions>
+           <!--工单总览-->
+            <DataGrid ItemsSource ="{Binding LsDailyOrder}" SelectedItem="{Binding SelectOrderDaily}" CanUserAddRows="False" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True">
+                <DataGrid.Resources>
+                    <local:BoolToImageConverter  x:Key="boolconvert" 
+                                           TrueValue="/MES.Resource.Image;Component/ImageList/Flag_blue.png"
+                                           FalseValue="/MES.Resource.Image;Component/ImageList/Flag_red.png"/>
+                </DataGrid.Resources>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="工单号" Width="150"  Binding="{Binding  OrderID}"/>
+                    <DataGridTextColumn Header="品名"      Binding="{Binding ProductName}"/>
+                    <DataGridTextColumn Header="规格"      Binding="{Binding Spec}"/>
+                    <DataGridTextColumn Header="总批量"    Binding="{Binding OrderCount}"/>
+                    <DataGridTextColumn Header="累计产出"  Binding="{Binding Qty}"/>
+                    <DataGridTextColumn Header="标准工时累计/分"  Binding="{Binding TotalWorkHoursStandard}"/>
+                    <DataGridTextColumn Header="生产工时累计/分"  Binding="{Binding WorkHours}"/>
+                    <DataGridTextColumn Header="差异对比"  Binding="{Binding Difference_StandardAndWork}"/>
+                    <!--定义模板列，并调用boolconvert方法，实现显示不同的图片-->
+
+                    <DataGridTemplateColumn Header="标识">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Difference_StandardAndWork, Mode=TwoWay, Converter={StaticResource boolconvert}}"
+                                  Width="32" Height="32" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTemplateColumn Width="100" Header="按钮" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Margin="5" Content="详情" Cursor="Hand"   Click="Button_Click">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <TextBlock TextDecorations="Underline">
+                    <ContentPresenter />
+                                            </TextBlock>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Foreground" Value="Blue" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--工序-->
+            <DataGrid ItemsSource ="{Binding LsDailyWorkHours }" SelectedItem="{Binding SelectProcessDaily}"  Grid.Column="2"  CanUserAddRows="False" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="工序名称"   Width="200"  Binding="{Binding ProcessName}"/>
+                    <DataGridTextColumn Header="总产出"  Width="120"  Binding="{Binding Qty}"/>
+                    <DataGridTextColumn Header="工时"  Width="130"  Binding="{Binding WorkHours}"/>
+                    <DataGridTemplateColumn Width="100" Header="按钮" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Margin="5" Content="详情" Cursor="Hand"   Click="Button_Click_1">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <TextBlock TextDecorations="Underline">
+                    <ContentPresenter />
+                                            </TextBlock>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Foreground" Value="Blue" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <!--详情-->
+            <DataGrid ItemsSource ="{Binding LsDailyUser }"   Grid.Column="4"  CanUserAddRows="False" AutoGenerateColumns="False" SelectionMode="Single" IsReadOnly="True" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="工号"     Binding="{Binding JobNum}"/>
+                    <DataGridTextColumn Header="姓名"     Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="总产出"   Binding="{Binding Qty}"/>
+                    <DataGridTextColumn Header="良品"     Binding="{Binding QtyOK}"/>
+                    <DataGridTextColumn Header="不良品"   Binding="{Binding QtyNG}"/>
+                    <DataGridTextColumn Header="效率"     Binding="{Binding Efficiency}"/>
+                    <DataGridTextColumn Header="生产工时" Binding="{Binding WorkHours}"/>
+                    <DataGridTextColumn Header="日期"     Binding="{Binding Date}"/>
+                    <DataGridTemplateColumn Width="100" Header="按钮" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Margin="5" Content="返回工单" Cursor="Hand"   Click="Button_Click_2">
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <TextBlock TextDecorations="Underline">
+                    <ContentPresenter />
+                                            </TextBlock>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Foreground" Value="Blue" />
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="true">
+                                                    <Setter Property="Foreground" Value="Red" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</UserControl>

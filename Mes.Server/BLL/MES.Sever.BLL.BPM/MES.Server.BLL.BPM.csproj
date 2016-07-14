@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BC47645-34F6-4C6B-8528-D114ED57ED8D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MES.Server.BLL.BPM</RootNamespace>
+    <AssemblyName>MES.Server.BLL.BPM</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NPOI.2.1.3.1\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NPOI.2.1.3.1\lib\net40\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.1.3.1, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NPOI.2.1.3.1\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BPM_Daily.cs" />
+    <Compile Include="BPM_FlowCard.cs" />
+    <Compile Include="BPM_Order.cs" />
+    <Compile Include="BPM_OrderRelevance.cs" />
+    <Compile Include="BPM_Order_ERP.cs" />
+    <Compile Include="BPM_Process.cs" />
+    <Compile Include="BPM_Product.cs" />
+    <Compile Include="BPM_ProductionRecords.cs" />
+    <Compile Include="BPM_ProductTemplate.cs" />
+    <Compile Include="BPM_ReWork.cs" />
+    <Compile Include="BPM_WIP.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Toslink.cs" />
+    <Compile Include="V_ProductionRecords.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Working\MyLib\ZhuifengLib\ZhuifengLib\ZhuifengLib.csproj">
+      <Project>{ac67be14-18df-411d-8648-584814f9bc5b}</Project>
+      <Name>ZhuifengLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\MES.CommonList\MES.Common\MES.Common.csproj">
+      <Project>{ea6527e2-de0c-4424-a82c-d39ec06c857d}</Project>
+      <Name>MES.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IDAL\DALFactory\MES.Server.DALFactory.csproj">
+      <Project>{fd390a2a-d2c1-4819-93d5-75dc39e405ce}</Project>
+      <Name>MES.Server.DALFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\IDAL\MES.Server.IDAL.BPM\MES.Server.IDAL.BPM.csproj">
+      <Project>{47acb66f-9134-46b3-be89-3844677f61db}</Project>
+      <Name>MES.Server.IDAL.BPM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Model\MES.Sever.Model.BPM\MES.Server.Model.BPM.csproj">
+      <Project>{d8d90306-f5e9-4910-996a-d7f2246bffa1}</Project>
+      <Name>MES.Server.Model.BPM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BPM\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,117 @@
+﻿<UserControl xmlns:ModuleBPM="clr-namespace:MES.ModuleBPM" 
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      x:Class="MES.ModuleBPM.ProcessSet" 
+             xmlns:local="clr-namespace:MES.ModuleBPM"
+      mc:Ignorable="d" Background="{DynamicResource Brush4}" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="{Binding EditHeigh}"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border Background="{DynamicResource Brush6}"  >
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                <TextBlock VerticalAlignment="Center">工序名称</TextBlock>
+                <TextBox x:Name="SearchValue" Width="180" VerticalAlignment="Center"/>
+
+                <Button Command="{Binding Search}" CommandParameter="{Binding Text, ElementName=SearchValue}" Content="查询"  Margin="10,0,0,0" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/Search.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button Command="{Binding ShowEdit}"   Content="编辑"  Margin="10,0,0,0" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/edit.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button Command="{Binding ExportToExcel}"  Content="导出"  Margin="5,0,5,0" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/Export.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+
+                <Button Command="{Binding InputForExcel}"  Content="导入"  Margin="5,0,5,0" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                    <Button.Background>
+                        <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/import.png" Stretch="Uniform"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+        </Border >
+
+        <Border Grid.Row="1">
+            <Grid Height="100"  HorizontalAlignment="Left" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="240"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="工序编号" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="工序名称" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="标准工时" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox IsEnabled="{Binding IsEdit}" Text="{Binding SelModel.ProcessID}" Grid.Row="1" Grid.Column="0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Margin="0,0,239,0"></TextBox>
+                <TextBox IsEnabled="{Binding IsEdit}" Text="{Binding SelModel.Name}" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.ColumnSpan="2" Margin="1,0,78,0"></TextBox>
+                <TextBox IsEnabled="{Binding IsEdit}" Text="{Binding SelModel.StandardHours}" Grid.Row="1" Grid.Column="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="2,0,0,0"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Column="5" Margin="0">
+
+                    <Button Command="{Binding Add}"   Content="新增"  Margin="10,0,0,0" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/Add.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+
+                    <Button Command="{Binding Edit}"   Content="编辑"  Margin="10,0,0,0" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/edit.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+
+                    <Button Command="{Binding Delete}"   Content="删除"  Margin="10,0,0,0" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/Delete.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+
+                    <Button Command="{Binding Sava}"   Content="保存"  Margin="10,0,0,0" HorizontalAlignment="Left" Width="70"  Style="{DynamicResource Buttonlist2}" Height="30" >
+                        <Button.Background>
+                            <ImageBrush ImageSource="/MES.Resource.Image;Component/ImageList/save.png" Stretch="Uniform"/>
+                        </Button.Background>
+                    </Button>
+                </StackPanel>
+                <TextBlock Text="宽放比例" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox IsEnabled="{Binding IsEdit}" Text="{Binding SelModel.Relax}" Grid.Row="1" Grid.Column="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Margin="0,0,2,0"/>
+                <TextBlock Text="PCS/H" Grid.Row="0" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBox IsEnabled="{Binding IsEdit}" Text="{Binding SelModel.PCSH}" Grid.Row="1" Grid.Column="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            </Grid>
+        </Border>
+
+        <DataGrid Grid.Row="2"  ItemsSource="{Binding LsProcess}" SelectedItem="{Binding SelModel}" CanUserAddRows="False" AutoGenerateColumns="False" SelectionMode="Single"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="部门"  Binding="{Binding WorkShop}"/>
+                <DataGridTextColumn Header="序号"  Binding="{Binding ProcessID}"/>
+                <DataGridTextColumn Header="工序ID"  Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="标准工时"  Binding="{Binding StandardHours}"/>
+                <DataGridTextColumn Header="宽放比例"  Binding="{Binding Relax}"/>
+                <DataGridTextColumn Header="PSC/H"  Binding="{Binding PCSH}"/>
+                <DataGridTextColumn Header="站别"  Binding="{Binding Workstation}"/>
+                <DataGridTextColumn Header="备注"  Binding="{Binding  Remark}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+    </Grid>
+
+</UserControl>
